@@ -1,3 +1,3 @@
 # projet-equide
 
-Projet a effectué lors du SAS au CESI
+Projet à effectuer lors du SAS au CESI
