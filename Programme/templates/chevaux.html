@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+
+{% block body %}
+
+	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		<h1 class="h2">Vos Chevaux</h1>
+		<a href="">
+		<button type="button" class="btn btn-secondary">Ajouter un cheval</button>
+	</a>
+	</div>
+	<div align="center">
+		<img src="{{url_for('static', filename='img/img_couverture.jpg')}}" ; width="100px;">
+	</div>
+	<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Nom</th>
+				<th scope="col">Race</th>
+				<th scope="col">Sexe</th>
+				<th scope="col">SIRE</th>
+				<th scope="col">Puce</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			
+			<tr>
+				<th scope="row"></th>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><a href="" class="btn btn-primary">Fiche</a>
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+</div>
+{% endblock %}
