@@ -24,16 +24,16 @@
 		</thead>
 		<tbody>
 
-			
+			{% for cheval in equides %}
 			<tr>
-				<th scope="row"></th>
-				<td></td>
+				<th scope="row">{{cheval.nom_eq}}</th>
+				<td>{{cheval.race_eq}}</td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td><a href="" class="btn btn-primary">Fiche</a>
 			</tr>
-
+			{% endfor %}
 		</tbody>
 	</table>
 </div>
