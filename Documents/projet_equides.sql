@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 07 sep. 2022 à 11:59
+-- Généré le : lun. 12 sep. 2022 à 11:55
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -303,6 +303,28 @@ INSERT INTO `soins_equides` (`id_soin_eq`, `id_eq_soin`, `id_type_soin`, `id_soi
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `transports`
+--
+
+DROP TABLE IF EXISTS `transports`;
+CREATE TABLE IF NOT EXISTS `transports` (
+  `id_voyage` int(11) NOT NULL AUTO_INCREMENT,
+  `lieu_desinf_vhl_dep` varchar(50) DEFAULT NULL,
+  `date_desinf_vhl_dep` datetime DEFAULT NULL,
+  `Type de transport` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_voyage`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `transports`
+--
+
+INSERT INTO `transports` (`id_voyage`, `lieu_desinf_vhl_dep`, `date_desinf_vhl_dep`, `Type de transport`) VALUES
+(1, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `types_equides`
 --
 
@@ -396,7 +418,8 @@ INSERT INTO `users` (`id_user`, `id_centre_user`, `login_user`, `code_user`) VAL
 -- Contraintes pour la table `deplacements`
 --
 ALTER TABLE `deplacements`
-  ADD CONSTRAINT `deplacements_ibfk_1` FOREIGN KEY (`id_eq_dep`) REFERENCES `equides` (`id_eq`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `deplacements_ibfk_1` FOREIGN KEY (`id_eq_dep`) REFERENCES `equides` (`id_eq`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `deplacements_ibfk_2` FOREIGN KEY (`id_transport`) REFERENCES `transports` (`id_voyage`);
 
 --
 -- Contraintes pour la table `equides`
