@@ -19,11 +19,12 @@
       <img class="mb-4" src="{{url_for('static', filename='img/logo_centre.png')}}" alt="" width="100" height="100">
       <h1 class="h3 mb-3 fw-normal">Votre centre équestre</h1>
       <div class="form-floating">
-        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus placeholder="Votre identifiant">
+        <input type="text" value="{{ request.form.username }}" name="username" id="inputUsername" class="form-control" autocomplete="username"  autofocus placeholder="Votre identifiant">
         <label for="floatingInput">Identifiant</label>
       </div>
       <div class="form-floating">
-      <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="Saisir votre mot de passe">
+      <input type="password" name="password" id="inputPassword" class="form-control" value="{{
+        request.form.password }}" autocomplete="current-password" required placeholder="Saisir votre mot de passe">
         <label for="floatingInput">Mot de passe</label>
       </div>
      
