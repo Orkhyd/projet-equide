@@ -1,14 +1,7 @@
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
-from user import User
-from sqlalchemy.ext.declarative import declarative_base
-Base = declarative_base()
+from flask import Flask, request, flash, url_for, redirect, render_template
 
-if __name__ == '__main__':
-   engine = create_engine('mysql://root:password@127.0.0.1:3306/test', echo=True)
-   Base.metadata.create_all(engine, checkfirst=True)
-   Session = sessionmaker(bind=engine)
-   session = Session()
-   ed_user = User('ed', 'Ed Jones', 'edspassword')
-   session.add(ed_user)
-   session.commit()
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('login.html')

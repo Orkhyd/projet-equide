@@ -27,8 +27,12 @@
 			{% for cheval in equides %}
 			<tr>
 				<th scope="row">{{cheval.nom_eq}}</th>
-				<td>{{cheval.race_eq}}</td>
-				<td>{{cheval.sexe_eq}}</td>
+				<td>{{cheval.race.nom_race}}</td>
+				{% if cheval.sexe_eq == 0 %}
+					<td>Femelle</td>
+				{% else %}
+					<td>Male</td>
+				{% endif %}
 				<td>{{cheval.puce_eq}}</td>
 				<td>{{cheval.sire_eq}}</td>
 				<td><a href="" class="btn btn-primary">Fiche</a>

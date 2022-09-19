@@ -7,32 +7,35 @@ from sqlalchemy.orm import relationship
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://team:*Azerty01*@localhost/projet_equides'
-app.config[ 'SQLALCHEMY_TRACK_MODIFICATION' ] = False
+app.config[ 'SQLALCHEMY_TRACK_MODIFICATION' ] = True
 db = SQLAlchemy(app)
+
+class Races_equides(db.Model):
+    id_race = db.Column(db.Integer, primary_key=True)
+    nom_race = db.Column(db.String)
+
+    # On crée une variable qui fait la connexion "back_populates" de la class Equides
+
+    equides = relationship('Equides', back_populates = 'race', lazy = True)
 
 
 class Equides(db.Model):
     id_eq = db.Column(db.Integer, primary_key=True)
     nom_eq = db.Column(db.String(80))
-    sexe_eq = db.Column(db.Boolean)
+    sexe_eq = db.Column(db.Integer)
     puce_eq = db.Column(db.Numeric)
     sire_eq = db.Column(db.String(10))
-    race_eq = db.relationship('Race', backref='races_equides')
+    race_eq = db.Column(db.Integer, db.ForeignKey('races_equides.id_race'))
 
-    def __init__(self, nom_eq, race_eq, sexe_eq, puce_eq):
-         self.nom_eq = nom_eq
-         self.sexe_eq = sexe_eq
-         self.puce_eq = puce_eq
+    # On crée une variable qui fait la connexion "back_populates" de la class Races_equides
+    race = relationship('Races_equides', back_populates = 'equides')
 
-
-
-class Race(db.Model):
-    id_race = db.Column(db.Integer, db.ForeignKey('equides.race_eq'), primary_key=True)
-    nom_race = db.Column(db.String)
 
 
 equides = Equides.query.all()
 
+for equide in equides:
+    print(equide.sexe_eq)
 
 @app.route('/')
 def index():
