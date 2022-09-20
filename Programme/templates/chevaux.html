@@ -5,7 +5,7 @@
 	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h1 class="h2">Vos Chevaux</h1>
 		<a href="">
-		<button type="button" class="btn btn-secondary">Fiche du petit cheval</button>
+		<button type="button" class="btn btn-secondary">Nouvel équidé</button>
 	</a>
 	</div>
 	<div align="center">
@@ -28,7 +28,7 @@
 			<tr>
 				<th scope="row">{{cheval.nom_eq}}</th>
 				<td>{{cheval.race.nom_race}}</td>
-				{% if cheval.sexe_eq == 0 %}
+				{% if cheval.sexe_eq == 00 %}
 					<td>Femelle</td>
 				{% else %}
 					<td>Male</td>
