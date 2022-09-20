@@ -62,9 +62,6 @@ def CHEVAUX():
 @app.route('/equide/<equide_id>', methods=['GET', 'POST'])
 def fiche_equide(equide_id):
     return render_template('fiche_equide.html', equide = Equides.query.filter_by(id_eq = equide_id).first(), races = Races_equides.query.all(), soins = Soins_equides.query.all())
-if __name__ == '__main__':
-   db.create_all()
-   app.run(debug = True)
 
 class Users(db.Model):
     id_user = db.Column(db.Integer, primary_key=True)
@@ -82,3 +79,7 @@ def login():
         else:
             return redirect(url_for('CHEVAUX'))
     return render_template('login.html', error=error)
+
+if __name__ == '__main__':
+    db.create_all()
+    app.run(debug = True)
