@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+
+{% block body %}
+
+<div class="row">
+	<div class="col-sm-10 form-control" >
+		<button style="float: left;" type="button" class="btn btn-success" data-bs-toggle="modal"
+			data-bs-target="#ajoutProp">
+			Ajouter un propriètaire
+		</button>
+	</div>
+</div>
+<div align="center">
+	<img src="{{url_for('static', filename='img/img_couverture.jpg')}}" ; width="100px;">
+</div>
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Nom</th>
+				<th scope="col">Prénom</th>
+				<th scope="col">SIRE</th>
+				<th scope="col">SIRET</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			{% for proprietaire in proprietaires %}
+			<tr>
+				<th scope="row">{{proprietaire.nom_prop}}</th>
+				<td>{{proprietaire.prenom_prop}}</td>
+				<td>{{proprietaire.sire_prop}}</td>
+				<td>{{proprietaire.siret_prop}}</td>
+				<td><a href=""
+						class="btn btn-primary">Fiche</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+</div>
+{% endblock %}

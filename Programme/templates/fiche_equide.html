@@ -140,9 +140,9 @@
 					</tr>
 					{% for soin in soins %}
 					<tr>
-						<td>{{soin.date_soin}}</td>
 						<td>{{soin.type_soin_eq.nom_type_soin }} </td>
 						<td>{{soin.soin_eq.nom_soin }} </td>
+						<td>{{soin.date_soin}}</td>
 						<td>{{soin.ref_soin}}</td>
 					</tr>
 					{% endfor %}

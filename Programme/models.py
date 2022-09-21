@@ -1,12 +1,12 @@
 from sqlalchemy.orm import relationship
-from todolist import db
+from projet_equides import db
 
 
 class Races_equides(db.Model):
     id_race = db.Column(db.Integer, primary_key=True)
     nom_race = db.Column(db.String)
     # On crée une variable qui fait la connexion "back_populates" de la class Equides
-    equides = relationship('Equides', back_populates = 'race', lazy = True)
+    equides_races = relationship('Equides', back_populates = 'race', lazy = True)
 
 class Soins(db.Model):
     id_soin = db.Column(db.Integer, primary_key=True)
@@ -34,9 +34,15 @@ class Equides(db.Model):
     sexe_eq = db.Column(db.Integer)
     puce_eq = db.Column(db.Numeric)
     sire_eq = db.Column(db.String(10))
+    pere_eq = db.Column(db.String)
+    mere_eq = db.Column(db.String)
+    pere_mere_eq = db.Column(db.String)
+    num_stu_book_eq = db.Column(db.String)
+    
+    
     race_eq = db.Column(db.Integer, db.ForeignKey('races_equides.id_race'))
     # On crée une variable qui fait la connexion "back_populates" de la class Races_equides
-    race = relationship('Races_equides', back_populates = 'equides')
+    race = relationship('Races_equides', back_populates = 'equides_races')
 
 
 class Soins_equides(db.Model):
@@ -54,6 +60,7 @@ class Soins_equides(db.Model):
     # On crée une variable qui fait la connexion "back_populates" de la class Types_soins
     prestataire_soin_eq = relationship('Prestataires', back_populates = 'presta_soin')
     ref_soin = db.Column(db.String)
+    com_soin = db.Column(db.String)
 
 class Deplacements(db.Model):
 
@@ -72,3 +79,10 @@ class Evenements(db.Model):
     date_even = db.Column(db.Date)
     titre_even = db.Column(db.String)
     detail_even = db.Column(db.Text)
+
+class Proprietaires(db.Model):
+    id_prop = db.Column(db.Integer, primary_key=True)
+    nom_prop = db.Column(db.String)
+    prenom_prop = db.Column(db.String)
+    sire_prop = db.Column(db.String)
+    siret_prop = db.Column(db.String)

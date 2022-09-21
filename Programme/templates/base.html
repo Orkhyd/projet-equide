@@ -100,6 +100,12 @@
 								Chevaux
 							</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('proprietaires.infos_proprietaires') }}">
+								<span data-feather="file" class="align-text-bottom"></span>
+								Propriétaire
+							</a>
+						</li>
 					</ul>
 
 					<h6
@@ -133,6 +139,132 @@
 		</div>
 	</div>
 	<!-- Modal -->
+	<div class="modal fade" id="ajoutEquide" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Ajout d'un équidé</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<form action="{{ url_for('chevaux.infos_chevaux') }}" method="post">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="nom_eq" class="form-label">Nom du cheval</label>
+								<input class="form-control" type="text" id="nom_eq" name="nom_eq" value="" required>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="race_eq" class="form-label">Race</label>
+								<select class="form-select" name="race_eq" id="race_eq">
+									<option value="" selected>Selectionner la race</option>
+									{% for race in races %}
+									<option value= {{ race.id_race }} >{{ race.nom_race }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>	
+						<div class="row">
+							<div class="col-sm-6 ">
+								<label for="sexe_eq" class="form-label">Sexe</label>
+								<select id="sexe_eq" name="sexe_eq" class="form-select" class="col-sm-6 form-label" required>
+									<option value=0 selected>Femelle</option>
+									<option value=1>Male</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="sire_eq" class="form-label">SIRE</label>
+								<input class="form-control" name="sire_eq" id="sire_eq" type="text" value="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="puce_eq" class="form-label">Puce</label>
+								<input class="form-control" name="puce_eq" id="puce_eq" type="text" value="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="pere_eq" class="form-label">Nom du père</label>
+								<input class="form-control" name="pere_eq" id="pere_eq" type="text" value="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="mere_eq" class="form-label">Nom de la mère</label>
+								<input class="form-control" name="mere_eq" id="mere_eq" type="text" value="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="pere_mere_eq" class="form-label">Nom du père de la mère</label>
+								<input class="form-control" name="pere_mere_eq" id="pere_mere_eq" type="text" value="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="num_stu_book_eq" class="form-label">Numéro Stud Book</label>
+								<input class="form-control" name="num_stu_book_eq" id="num_stu_book_eq" type="text" value="">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+						<input class="btn btn-success" name="form_add_equide" type="submit" value="Ajouter">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="ajoutProp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Ajout d'un équidé</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<form action="{{ url_for('proprietaires.infos_proprietaires') }}" method="post">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="nom_prop" class="form-label">Nom du Propriétaire</label>
+								<input class="form-control" type="text" id="nom_prop" name="nom_prop" value="" required>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="prenom_prop" class="form-label">Prénom du Propriétaire</label>
+								<input class="form-control" type="text" id="prenom_prop" name="prenom_prop" value="" required>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="sire_prop" class="form-label">SIRE de Propriétaire</label>
+								<input class="form-control" name="sire_prop" id="sire_prop" type="text" value="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="siret_prop" class="form-label">SIRE de Propriétaire</label>
+								<input class="form-control" name="siret_prop" id="siret_prop" type="text" value="">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+						<input class="btn btn-success" name="form_add_prop" type="submit" value="Ajouter">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
 	<div class="modal fade" id="ajoutSoin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 		aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -141,60 +273,66 @@
 					<h5 class="modal-title" id="staticBackdropLabel">Ajout d'un soin</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="type_nv_soin" class="form-label">Type de soin</label>
-							<select id="type_nv_soin" class="form-select">
-								{% for type_soins in types_soins %}
-								<option value="{{ type_soins.id_type_soin }}">{{ type_soins.nom_type_soin }}</option>
-								{% endfor %}
-							</select>
+				<form action={% if equide is defined %}"{{ url_for('chevaux.fiche_equide', equide_id=equide.id_eq) }}"{%
+					endif %} method="post">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="type_nv_soin" class="form-label">Type de soin</label>
+								<select id="type_nv_soin" name="type_nv_soin" class="form-select">
+									{% for type_soins in types_soins %}
+									<option value="{{ type_soins.id_type_soin }}">{{ type_soins.nom_type_soin }}
+									</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="nom_soin" class="form-label">Nom du soin</label>
+								<select id="nom_soin" name="nom_soin" class="form-select">
+									{% for nv_soin in nv_soins %}
+									<option value="{{ nv_soin.id_soin }}">{{ nv_soin.nom_soin }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="prestataire" class="form-label">Nom du prestataire</label>
+								<select id="prestataire" name="prestataire" class="form-select">
+									{% for prestataire in prestataires %}
+									<option value="{{ prestataire.id_presta }}">{{ prestataire.nom_presta }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="date_soin" class="form-label">Date du soin</label>
+								<input class="form-control" type="date" name="date_soin" id="date_soin">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="color" class="form-label">Référence</label>
+								<input type="text" class="form-control" name="ref_soin" id="ref_soin">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="com_soin" class="form-label">Commentaire</label>
+								<textarea class="form-control" id="com_soin" name="com_soin" cols="30"
+									rows="5"></textarea>
+							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="color" class="form-label">Nom du soin</label>
-							<select id="nom_soin" class="form-select">
-								{% for nv_soin in nv_soins %}
-								<option value="{{ nv_soin.id_soin }}">{{ nv_soin.nom_soin }}</option>
-								{% endfor %}
-							</select>
-						</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+						<input class="btn btn-success" name="form_add_soin" type="submit" value="Ajouter">
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="prestataire" class="form-label">Nom du prestataire</label>
-							<select id="prestataire" class="form-select">
-								{% for prestataire in prestataires %}
-								<option value="{{ prestataire.id_presta }}">{{ prestataire.nom_presta }}</option>
-								{% endfor %}
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="date_soin" class="form-label">Date du soin</label>
-							<input class="form-control" type="date" name="date_soin" id="date_soin">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="color" class="form-label">Référence</label>
-							<input type="text" class="form-control" name="ref_soin" id="ref_soin">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="com_soin" class="form-label">Commentaire</label>
-							<textarea class="form-control" id="com_soin" name="" id="" cols="30" rows="5"></textarea>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-					<button type="button" class="btn btn-success">Ajouter</button>
-				</div>
+				</form>
+
 			</div>
 		</div>
 	</div>
@@ -207,87 +345,94 @@
 					<h5 class="modal-title" id="staticBackdropLabel">Ajout d'un déplacement</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="lieu_depart_dep" class="form-label">Lieu de départ</label>
-							<input type="text" class="form-control" name="lieu_depart_dep" id="lieu_depart_dep">
+				<form action={% if equide is defined %}"{{ url_for('chevaux.fiche_equide', equide_id=equide.id_eq) }}"{%
+					endif %} method="post">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="lieu_depart_dep" class="form-label">Lieu de départ</label>
+								<input type="text" class="form-control" name="lieu_depart_dep" id="lieu_depart_dep">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="date_depart_dep" class="form-label">Date du départ</label>
+								<input class="form-control" type="date" name="date_depart_dep" id="date_depart_dep">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="motif_depart_dep" class="form-label">Motif du départ</label>
+								<input type="text" class="form-control" name="motif_depart_dep" id="motif_depart_dep">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="lieu_arrive_dep" class="form-label">Lieu d'arrivée</label>
+								<input type="text" class="form-control" name="lieu_arrive_dep" id="lieu_arrive_dep">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="date_arrive_dep" class="form-label">Date d'arrivée</label>
+								<input class="form-control" type="date" name="date_arrive_dep" id="dat_arrive_dep">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="motif_arrive_dep" class="form-label">Motif d'arrivée</label>
+								<input type="text" class="form-control" name="motif_arrive_dep" id="motif_arrive_dep">
+							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="date_depart_dep" class="form-label">Date du départ</label>
-							<input class="form-control" type="date" name="date_depart_dep" id="date_depart_dep">
-						</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+						<input name="form_add_deplacement" class="btn btn-success" type="submit" value="Ajouter">
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="motif_depart_dep" class="form-label">Motif du départ</label>
-							<input type="text" class="form-control" name="motif_depart_dep" id="motif_depart_dep">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="lieu_arrive_dep" class="form-label">Lieu d'arrivée</label>
-							<input type="text" class="form-control" name="lieu_arrive_dep" id="lieu_arrive_dep">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="date_arrive_dep" class="form-label">Date d'arrivée</label>
-							<input class="form-control" type="date" name="date_arrive_dep" id="dat_arrive_dep">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="motif_arrive_dep" class="form-label">Motif d'arrivée</label>
-							<input type="text" class="form-control" name="motif_arrive_dep" id="motif_arrive_dep">
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-					<button type="button" class="btn btn-success">Ajouter</button>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
-<!-- Modal -->
-<div class="modal fade" id="ajoutevenement" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog">
-	<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title" id="staticBackdropLabel">Ajout d'un événement</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<div class="row">
-				<div class="col-sm-12">
-					<label for="date_even" class="form-label">Date de l'événement</label>
-					<input class="form-control" type="date" name="date_even" id="date_even">
+	<!-- Modal -->
+	<div class="modal fade" id="ajoutevenement" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Ajout d'un événement</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
+				<form action={% if equide is defined %}"{{ url_for('chevaux.fiche_equide', equide_id=equide.id_eq )
+					}}"{% endif %} method="post">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="date_even" class="form-label">Date de l'événement</label>
+								<input class="form-control" type="date" name="date_even" id="date_even">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="titre_even" class="form-label">Titre de l'événement</label>
+								<input type="text" class="form-control" name="titre_even" id="titre_even">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="detail_even" class="form-label">Commentaire</label>
+								<textarea class="form-control" id="detail_even" name="detail_even" cols="30"
+									rows="10"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+						<input type="submit" name="form_add_evenement" class="btn btn-success" value="Ajouter">
+					</div>
+				</form>
 			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<label for="titre_even" class="form-label">Titre de l'événement</label>
-					<input type="text" class="form-control" name="titre_even" id="titre_even">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<label for="detail_even" class="form-label">Commentaire</label>
-					<textarea class="form-control" id="detail_even" name="" id="" cols="30" rows="10"></textarea>
-				</div>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-			<button type="button" class="btn btn-success">Ajouter</button>
 		</div>
 	</div>
-</div>
-</div>
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
 		integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
 		crossorigin="anonymous"></script>

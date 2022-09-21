@@ -14,3 +14,6 @@ db = SQLAlchemy(app)
 
 from views import chevaux
 app.register_blueprint(chevaux)
+
+from views import proprietaires
+app.register_blueprint(proprietaires)

@@ -2,16 +2,18 @@
 
 {% block body %}
 
-	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-		<h1 class="h2">Vos Chevaux</h1>
-		<a href="">
-		<button type="button" class="btn btn-secondary">Ajouter un cheval</button>
-	</a>
+<div class="row">
+	<div class="col-sm-10">
+		<button style="float: left;" type="button" class="btn btn-success" data-bs-toggle="modal"
+			data-bs-target="#ajoutEquide">
+			Ajouter un équidé
+		</button>
 	</div>
-	<div align="center">
-		<img src="{{url_for('static', filename='img/img_couverture.jpg')}}" ; width="100px;">
-	</div>
-	<div>
+</div>
+<div align="center">
+	<img src="{{url_for('static', filename='img/img_couverture.jpg')}}" ; width="100px;">
+</div>
+<div>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -29,13 +31,14 @@
 				<th scope="row">{{cheval.nom_eq}}</th>
 				<td>{{cheval.race.nom_race}}</td>
 				{% if cheval.sexe_eq == 0 %}
-					<td>Femelle</td>
+				<td>Femelle</td>
 				{% else %}
-					<td>Male</td>
+				<td>Male</td>
 				{% endif %}
 				<td>{{cheval.puce_eq}}</td>
 				<td>{{cheval.sire_eq}}</td>
-				<td><a href="{{ url_for('chevaux.fiche_equide', equide_id= cheval.id_eq) }}" class="btn btn-primary">Fiche</a>
+				<td><a href="{{ url_for('chevaux.fiche_equide', equide_id= cheval.id_eq) }}"
+						class="btn btn-primary">Fiche</a>
 			</tr>
 			{% endfor %}
 		</tbody>
