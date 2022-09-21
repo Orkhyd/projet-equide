@@ -5,7 +5,7 @@
 	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h1 class="h2">Vos Chevaux</h1>
 		<a href="">
-		<button type="button" class="btn btn-secondary">Nouvel équidé</button>
+		<button type="button" class="btn btn-secondary">Ajouter un cheval</button>
 	</a>
 	</div>
 	<div align="center">
@@ -28,14 +28,14 @@
 			<tr>
 				<th scope="row">{{cheval.nom_eq}}</th>
 				<td>{{cheval.race.nom_race}}</td>
-				{% if cheval.sexe_eq == 00 %}
+				{% if cheval.sexe_eq == 0 %}
 					<td>Femelle</td>
 				{% else %}
 					<td>Male</td>
 				{% endif %}
 				<td>{{cheval.puce_eq}}</td>
 				<td>{{cheval.sire_eq}}</td>
-				<td><a href="{{ url_for('fiche_equide', equide_id= cheval.id_eq) }}" class="btn btn-primary">Fiche</a>
+				<td><a href="{{ url_for('chevaux.fiche_equide', equide_id= cheval.id_eq) }}" class="btn btn-primary">Fiche</a>
 			</tr>
 			{% endfor %}
 		</tbody>
