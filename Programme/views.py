@@ -2,11 +2,12 @@ from flask import Flask, request, flash, url_for, redirect, render_template
 from flask import Blueprint
 from flask import current_app as app
 from projet_equides import app
-from models import Equides, Races_equides, Soins_equides, Deplacements, Evenements, Types_soins, Soins, Proprietaires, Prestataires 
+from models import Equides, Races_equides, Soins_equides, Deplacements, Evenements, Types_soins, Soins, Proprietaires, Transports, Prestataires 
 from projet_equides import db
 
 chevaux = Blueprint('chevaux', __name__)
 proprietaires = Blueprint('proprietaires', __name__)
+transports = Blueprint('transports', __name__)
 
 @chevaux.route('/equide', methods=['GET', 'POST'])
 def infos_chevaux():
@@ -96,6 +97,19 @@ def infos_proprietaires():
 
       db.session.commit() 
       return redirect(url_for('proprietaires.infos_proprietaires'))
+
+@transports.route('/transports', methods=['GET', 'POST'])
+def infos_transports():
+   infos_transports = Transports.query.all()
+   infos_deplacements = Deplacements.query.all()
+   if request.method == 'GET':
+      return render_template('transports.html', transports = infos_transports, deplacements = infos_deplacements)
+   if request.method == 'POST':
+      if 'form_add_transport' in request.form:
+         add_transport = Transports()
+         db.session.add(add_transport)
+         db.session.commit() 
+      return redirect(url_for('transports.infos_transports'))
 
 if __name__ == '__main__':
    db.create_all()

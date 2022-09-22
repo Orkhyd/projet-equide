@@ -39,6 +39,7 @@ class Equides(db.Model):
     pere_mere_eq = db.Column(db.String)
     num_stu_book_eq = db.Column(db.String)
     
+    dep_eq = relationship('Deplacements', back_populates = 'eq_dep', lazy = True)
     
     race_eq = db.Column(db.Integer, db.ForeignKey('races_equides.id_race'))
     # On crée une variable qui fait la connexion "back_populates" de la class Races_equides
@@ -65,13 +66,20 @@ class Soins_equides(db.Model):
 class Deplacements(db.Model):
 
     id_dep = db.Column(db.Integer, primary_key=True)
-    id_eq_dep = db.Column(db.Integer)
+    id_eq_dep = db.Column(db.Integer, db.ForeignKey('equides.id_eq'))
+     # On crée une variable qui fait la connexion "back_populates" de la class Types_soins
+    eq_dep = relationship('Equides', back_populates = 'dep_eq')
     date_depart_dep = db.Column(db.DateTime)
     date_arrive_dep = db.Column(db.DateTime)
     lieu_depart_dep = db.Column(db.String)
     lieu_arrive_dep = db.Column(db.String)
     motif_depart_dep = db.Column(db.String)
     motif_arrive_dep = db.Column(db.String)
+
+
+    id_transport = db.Column(db.Integer, db.ForeignKey('transports.id_voyage'))
+    # On crée une variable qui fait la connexion "back_populates" de la class Types_soins
+    transport_dep = relationship('Transports', back_populates = 'dep_transport')
 
 class Evenements(db.Model):
     id_even = db.Column(db.Integer, primary_key=True)
@@ -86,3 +94,11 @@ class Proprietaires(db.Model):
     prenom_prop = db.Column(db.String)
     sire_prop = db.Column(db.String)
     siret_prop = db.Column(db.String)
+
+class Transports(db.Model):
+    id_voyage = db.Column(db.Integer, primary_key=True)
+    lieu_desinf_vhl_dep = db.Column(db.String)
+    type_de_tranport = db.Column(db.String)
+    date_desinf_vhl_dep = db.Column(db.Date)
+    # On crée une variable qui fait la connexion "back_populates" de la class Soins_equides
+    dep_transport = relationship('Deplacements', back_populates = 'transport_dep', lazy = True)

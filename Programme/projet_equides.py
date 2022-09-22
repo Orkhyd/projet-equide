@@ -17,3 +17,6 @@ app.register_blueprint(chevaux)
 
 from views import proprietaires
 app.register_blueprint(proprietaires)
+
+from views import transports
+app.register_blueprint(transports)
