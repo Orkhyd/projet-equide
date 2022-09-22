@@ -1,0 +1,104 @@
+{% extends 'base.html'%}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-10 form-control">
+        <form action="{{ url_for('transports.infos_transports')}}" method="post">
+            <input type="submit" name="form_add_transport" class="btn btn-success" value="Ajouter">
+        </form>
+    </div>
+</div>
+<div align="center">
+    <img src="{{url_for('static', filename='img/img_couverture.jpg')}}" ; width="100px;">
+</div>
+
+{% if transports[0] is defined %}
+
+{% for transport in transports %}
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{transport.id_voyage}}"
+                aria-expanded="true" aria-controls="collapse{{transport.id_voyage}}">
+                Transports du {{transport.id_voyage}}
+            </button>
+        </h2>
+        <div id="collapse{{transport.id_voyage}}" class="accordion-collapse collapse hide" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="">Type de transport</label>
+                        <input type="text" class="form-control" value="{{transport.type_de_tranport}}">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="">Date de désinfection</label>
+                        <input type="date" class="form-control" value="{{transport.date_desinf_vhl_dep}}">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="">Lieu de désinfection</label>
+                        <input type="text" class="form-control" value="{{transport.lieu_desinf_vhl_dep}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <button style="float: left;" type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#ajoutdeplacement" data-backdrop="{{transport.id_voyage}}">
+                        Ajouter un déplacement
+                    </button>
+                </div>
+
+            </div>
+            <div style="text-align:center;" role="alert">
+                <b>EQUIDES PRESENTS</b>
+            </div>
+            <div class="row col-sm-12">
+                <table>
+                    <tr>
+                        <th>Date de départ</th>
+                        <th>Lieu de départ</th>
+                        <th>Motif de départ</th>
+                        <th>Date d'arrivée</th>
+                        <th>Lieu d'arrivée</th>
+                        <th>Motif d'arrivée</th>
+                    </tr>
+                    {% for deplacement in deplacements %}
+                    {% if deplacement.id_transport == transport.id_voyage %}
+                    <div class="row col-sm-12">
+                        <tr>
+                            <td COLSPAN="6" style="text-align: center; background-color:rgb(201, 195, 195)">
+                                {{deplacement.eq_dep.nom_eq}} </td>
+                        </tr>
+
+                        <tr>
+                            <td>{{deplacement.date_depart_dep}}</td>
+                            <td>{{deplacement.lieu_depart_dep}}</td>
+                            <td>{{deplacement.motif_depart_dep}}</td>
+                            <td>{{deplacement.date_arrive_dep}}</td>
+                            <td>{{deplacement.lieu_arrive_dep}}</td>
+                            <td>{{deplacement.motif_arrive_dep}}</td>
+                        </tr>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% else %}
+<p>
+<div class="alert alert-primary form-control" role="alert">
+    Il n'y a eu aucun transport !
+</div>
+
+</p>
+{% endif %}
+
+{% endblock %}

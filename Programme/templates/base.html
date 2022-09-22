@@ -106,6 +106,12 @@
 								Propriétaire
 							</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('transports.infos_transports') }}">
+								<span data-feather="file" class="align-text-bottom"></span>
+								Transports
+							</a>
+						</li>
 					</ul>
 
 					<h6
@@ -150,7 +156,7 @@
 				<form action="{{ url_for('chevaux.infos_chevaux') }}" method="post">
 					<div class="modal-body">
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-sm-12">
 								<label for="nom_eq" class="form-label">Nom du cheval</label>
 								<input class="form-control" type="text" id="nom_eq" name="nom_eq" value="" required>
 							</div>
@@ -165,8 +171,6 @@
 									{% endfor %}
 								</select>
 							</div>
-						</div>	
-						<div class="row">
 							<div class="col-sm-6 ">
 								<label for="sexe_eq" class="form-label">Sexe</label>
 								<select id="sexe_eq" name="sexe_eq" class="form-select" class="col-sm-6 form-label" required>
@@ -180,8 +184,6 @@
 								<label for="sire_eq" class="form-label">SIRE</label>
 								<input class="form-control" name="sire_eq" id="sire_eq" type="text" value="">
 							</div>
-						</div>
-						<div class="row">
 							<div class="col-sm-6">
 								<label for="puce_eq" class="form-label">Puce</label>
 								<input class="form-control" name="puce_eq" id="puce_eq" type="text" value="">
@@ -192,8 +194,6 @@
 								<label for="pere_eq" class="form-label">Nom du père</label>
 								<input class="form-control" name="pere_eq" id="pere_eq" type="text" value="">
 							</div>
-						</div>
-						<div class="row">
 							<div class="col-sm-6">
 								<label for="mere_eq" class="form-label">Nom de la mère</label>
 								<input class="form-control" name="mere_eq" id="mere_eq" type="text" value="">
@@ -204,8 +204,6 @@
 								<label for="pere_mere_eq" class="form-label">Nom du père de la mère</label>
 								<input class="form-control" name="pere_mere_eq" id="pere_mere_eq" type="text" value="">
 							</div>
-						</div>
-						<div class="row">
 							<div class="col-sm-6">
 								<label for="num_stu_book_eq" class="form-label">Numéro Stud Book</label>
 								<input class="form-control" name="num_stu_book_eq" id="num_stu_book_eq" type="text" value="">
@@ -245,13 +243,13 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<label for="sire_prop" class="form-label">SIRE de Propriétaire</label>
+								<label for="sire_prop" class="form-label">SIRE du Propriétaire</label>
 								<input class="form-control" name="sire_prop" id="sire_prop" type="text" value="">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<label for="siret_prop" class="form-label">SIRE de Propriétaire</label>
+								<label for="siret_prop" class="form-label">SIRET du Propriétaire</label>
 								<input class="form-control" name="siret_prop" id="siret_prop" type="text" value="">
 							</div>
 						</div>
@@ -433,6 +431,13 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	<script type="text/javascript">
+        $("#submit").click(function () {
+            var voyage_id = $("#id_voyage").val();
+            $("#ajoutdeplacement").html(text);
+        });
+    </script>
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
 		integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
 		crossorigin="anonymous"></script>
