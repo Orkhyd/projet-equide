@@ -57,7 +57,7 @@
 		-webkit-overflow-scrolling: touch;
 	}
 </style>
-<div class="col-sm-12">
+<main>
 	<div class="py-5 text-center">
 		<img src="{{url_for('static', filename='img/logo_centre.png')}}" ; width="100px;">
 		<h2>Fiche de {{ equide.nom_eq }}</h2>
@@ -76,14 +76,28 @@
 		<div class="tab-content col-sm-12" id="v-pills-tabContent">
 			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 				<div class="col-sm-12 ">
+<<<<<<< Updated upstream
+				<form class="needs-validation" novalidate>
+					<div class="row">
+						<div class="col-sm-6">
+							<label for="name" class="form-label">Nom du cheval</label>
+							<input class="form-control" type="text" value="{{ equide.nom_eq }}">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 ">
+							<label for="color" class="form-label">Sexe</label>
+							<select class="form-select" class="col-sm-6 form-label">
+								<option value=0 {% if equide.sexe_eq==0 %}selected{% endif %}>Femelle</option>
+								<option value=1 {% if equide.sexe_eq==1 %}selected{% endif %}>Male</option>
+							</select>
+=======
 					<form class="needs-validation" novalidate>
 						<div class="row">
 							<div class="col-sm-6">
 								<label for="name" class="form-label">Nom du cheval</label>
 								<input class="form-control" type="text" value="{{ equide.nom_eq }}">
 							</div>
-						</div>
-						<div class="row">
 							<div class="col-sm-6 ">
 								<label for="color" class="form-label">Sexe</label>
 								<select class="form-select" class="col-sm-6 form-label">
@@ -91,129 +105,64 @@
 									<option value=1 {% if equide.sexe_eq==1 %}selected{% endif %}>Male</option>
 								</select>
 							</div>
+>>>>>>> Stashed changes
 						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<label for="color" class="form-label">SIRE</label>
-								<input class="form-control" type="text" value="{{ equide.sire_eq }}">
-							</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<label for="color" class="form-label">SIRE</label>
+							<input class="form-control" type="text" value="{{ equide.sire_eq }}">
 						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<label for="color" class="form-label">Puce</label>
-								<input class="form-control" type="text" value="{{ equide.puce_eq }}">
-							</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<label for="color" class="form-label">Puce</label>
+							<input class="form-control" type="text" value="{{ equide.puce_eq }}">
 						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<label for="color" class="form-label">Race</label>
-								<select class="form-select">
-									{% for race in races %}
-									<option value="{{ race.id_race }}" {% if race.id_race==equide.race.id_race
-										%}selected{% endif %}>{{ race.nom_race }}</option>
-									{% endfor %}
-								</select>
-							</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<label for="color" class="form-label">Race</label>
+							<select class="form-select">
+								{% for race in races %}
+								<option value="{{ race.id_race }}" {% if race.id_race==equide.race.id_race %}selected{%
+									endif %}>{{ race.nom_race }}</option>
+								{% endfor %}
+							</select>
 						</div>
-						<br>
+					</div>
+					<br>
 
-					</form>
+				</form>
 				</div>
 			</div>
 			<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-				<div class="row">
-					<div class="col-sm-10">
-						<button style="float: left;" type="button" class="btn btn-success" data-bs-toggle="modal"
-							data-bs-target="#ajoutSoin">
-							Ajouter un soin
-						</button>
-					</div>
-
-				</div>
-				{% if soins[0] is defined %}				
-				<table class="col-sm-12">
+				<table class="col-sm-12 ">
 					<tr>
+						<th>id de l'équidé</th>
 						<th>Type de soin</th>
 						<th>Nom du soin</th>
-						<th>Date du soin</th>
 						<th>Ref du soin</th>
-					</tr>
+					  </tr>
 					{% for soin in soins %}
 					<tr>
-						<td>{{soin.type_soin_eq.nom_type_soin }} </td>
+						<td>{{ soin.id_eq_soin}}</td>
 						<td>{{soin.soin_eq.nom_soin }} </td>
-						<td>{{soin.date_soin}}</td>
+						<td>{{soin.type_soin_eq.nom_type_soin }} </td>
 						<td>{{soin.ref_soin}}</td>
-					</tr>
+					  </tr>
 					{% endfor %}
-				</table>
-				{% else %}
-				<p>
-					<div class="alert alert-primary form-control" role="alert">
-						Votre équidé n'a reçu aucun soin !
-					</div>
-
-				</p>
-				{% endif %}
-			</div>
-			<div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-				<div class="row">
-					<div class="col-sm-10">
-						<button style="float: left;" type="button" class="btn btn-success" data-bs-toggle="modal"
-							data-bs-target="#ajoutdeplacement">
-							Ajouter un déplacement
-						</button>
-					</div>
-
-				</div>
-				<table class="col-sm-12 ">
-					<tr>
-						<th>Date de départ</th>
-						<th>Lieu de départ</th>
-						<th>Date d'arrivée</th>
-						<th>Lieu d'arrivée</th>
-					</tr>
-					{% if deplacements%}
-					{% for deplacement in deplacements %}
-					<tr>
-						<td>{{deplacement.date_depart_dep}}</td>
-						<td>{{deplacement.lieu_depart_dep}}</td>
-						<td>{{deplacement.date_arrive_dep }} </td>
-						<td>{{deplacement.lieu_arrive_dep }} </td>
-					</tr>
-					{% endfor %}
-					{% endif %}
 				</table>
 			</div>
-			<div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-				<div class="row">
-					<div class="col-sm-10">
-						<button style="float: left;" type="button" class="btn btn-success" data-bs-toggle="modal"
-							data-bs-target="#ajoutevenement">
-							Ajouter un evénement
-						</button>
-					</div>
-				</div>
-				<table class="col-sm-12 ">
-					<tr>
-						<th width: 30%>Date de l'événement</th>
-						<th width: 20%>Titre</th>
-						<th width: 50%>Détail</th>
-					</tr>
-					{% for evenement in evenements %}
-					<tr>
-						<td width: 30%>{{evenement.date_even}}</td>
-						<td width: 20%>{{evenement.titre_even}}</td>
-						<td width: 50%>{{evenement.detail_even }} </td>
-					</tr>
-					{% endfor %}
-				</table>
+			<div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...
+			</div>
+			<div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...
 			</div>
 		</div>
 	</div>
 
-
+	</div>
+</main>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.0/umd/popper.min.js"></script>
-
 {% endblock %}
