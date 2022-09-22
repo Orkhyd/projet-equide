@@ -14,11 +14,6 @@
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/checkout/">
 
 	<style>
-		@media print {
-			.print-hidden {
-				display: None !important;
-			}
-      	}
 		.bd-placeholder-img {
 			font-size: 1.125rem;
 			text-anchor: middle;
@@ -69,13 +64,12 @@
 			white-space: nowrap;
 			-webkit-overflow-scrolling: touch;
 		}
-
 	</style>
 
 
 </head>
 
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow print-hidden">
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
 	<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="">Mon centre équestre</a>
 	<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
 		data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,7 +144,7 @@
     <div class="col-sm-10 form-control">
         <form action="/transports" method="post">
             <input type="submit" name="form_add_transport" class="btn btn-success" value="Ajouter">
-            <a href="/transports/pdf" class="btn btn-success">Afficher en PDF</a>
+            <a href="/transports/pdf" class="btn btn-success">Télécharger en PDF</a>
         </form>
     </div>
 </div>
