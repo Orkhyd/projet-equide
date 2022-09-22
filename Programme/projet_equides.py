@@ -19,7 +19,6 @@ app.register_blueprint(chevaux)
 from views import proprietaires
 app.register_blueprint(proprietaires)
 
-<<<<<<< HEAD
 from views import login_bp
 app.register_blueprint(login_bp)
 
@@ -27,7 +26,5 @@ app.register_blueprint(login_bp)
 if __name__ == '__main__':
 	app.run(debug=True)
 
-=======
 from views import transports
 app.register_blueprint(transports)
->>>>>>> modifs-viables

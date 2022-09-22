@@ -96,7 +96,6 @@ class Proprietaires(db.Model):
     sire_prop = db.Column(db.String)
     siret_prop = db.Column(db.String)
 
-<<<<<<< HEAD
 
 class User(UserMixin, db.Model):
 
@@ -149,7 +148,6 @@ class User(UserMixin, db.Model):
             return None
 
 
-=======
 class Transports(db.Model):
     id_voyage = db.Column(db.Integer, primary_key=True)
     lieu_desinf_vhl_dep = db.Column(db.String)
@@ -157,4 +155,3 @@ class Transports(db.Model):
     date_desinf_vhl_dep = db.Column(db.Date)
     # On crée une variable qui fait la connexion "back_populates" de la class Soins_equides
     dep_transport = relationship('Deplacements', back_populates = 'transport_dep', lazy = True)
->>>>>>> modifs-viables
