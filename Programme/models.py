@@ -175,7 +175,7 @@ class User(UserMixin, db.Model):
 class Transports(db.Model):
     id_voyage = db.Column(db.Integer, primary_key=True)
     lieu_desinf_vhl_dep = db.Column(db.String)
-    type_de_tranport = db.Column(db.String)
+    type_de_transport = db.Column(db.String)
     date_desinf_vhl_dep = db.Column(db.Date)
     # On crée une variable qui fait la connexion "back_populates" de la class Soins_equides
     dep_transport = relationship('Deplacements', back_populates = 'transport_dep', lazy = True)
