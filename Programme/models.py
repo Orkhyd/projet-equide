@@ -1,3 +1,4 @@
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from projet_equides import db
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -19,6 +20,13 @@ class Soins(db.Model):
 class Prestataires(db.Model):
     id_presta = db.Column(db.Integer, primary_key=True)
     nom_presta = db.Column(db.String)
+    prenom_presta = db.Column(db.String)
+    tel_presta = db.Column(db.String)
+    mail_presta = db.Column(db.String)
+    adresse_ligne_1_presta = db.Column(db.String)
+    adresse_ligne_2_presta = db.Column(db.String)
+    cp_presta = db.Column(db.String)
+    ville_presta = db.Column(db.String)
     # On crée une variable qui fait la connexion "back_populates" de la class Soins_equides
     presta_soin = relationship('Soins_equides', back_populates = 'prestataire_soin_eq', lazy = True)
 
@@ -95,6 +103,22 @@ class Proprietaires(db.Model):
     prenom_prop = db.Column(db.String)
     sire_prop = db.Column(db.String)
     siret_prop = db.Column(db.String)
+
+class Centres_detention(db.Model):
+    Id_centre = db.Column(db.Integer, primary_key=True)
+    Nom_centre = db.Column(db.String)
+    Type_activite_centre = db.Column(db.String)
+    Telephone_centre = db.Column(db.String)
+    Mail_centre = db.Column(db.String)
+    Raison_Sociale_centre = db.Column(db.String)
+    Ligne1_Adresse_centre = db.Column(db.String)
+    Ligne2_Adresse_centre = db.Column(db.String)
+    Code_postal_centre = db.Column(db.String)
+    Ville_centre = db.Column(db.String)
+    Pays_centre = db.Column(db.String)
+    Numero_SIRET_det_centre = db.Column(db.String)
+    Statut_juridique_centre = db.Column(db.String)
+    Code_APE_det_centre = db.Column(db.String)
 
 
 class User(UserMixin, db.Model):

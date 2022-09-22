@@ -2,7 +2,7 @@ from flask import Flask, request, flash, url_for, redirect, render_template
 from flask import Blueprint
 from flask import current_app as app
 from projet_equides import app
-from models import Equides, Races_equides, Soins_equides, Deplacements, Evenements, Types_soins, Soins, Proprietaires, Transports, Prestataires 
+from models import Equides, Races_equides, Soins_equides, Deplacements, Evenements, Types_soins, Soins, Proprietaires, Transports, Prestataires,  Centres_detention
 from projet_equides import db
 from flask_login import current_user, login_required, logout_user, login_user
 from flask_login import LoginManager
@@ -16,6 +16,8 @@ chevaux = Blueprint('chevaux', __name__)
 proprietaires = Blueprint('proprietaires', __name__)
 transports = Blueprint('transports', __name__)
 races = Blueprint('races', __name__)
+prestataires = Blueprint('prestataires', __name__)
+centres_detention = Blueprint('centres_detention', __name__)
 #Déclare le blueprint login
 login_bp = Blueprint('login', __name__,template_folder='templates',static_folder='static',url_prefix='/')
 
@@ -140,7 +142,7 @@ def infos_transports():
          db.session.commit() 
       return redirect(url_for('transports.infos_transports'))
 
-@races.route('/transports', methods=['GET', 'POST'])
+@races.route('/races', methods=['GET', 'POST'])
 @login_required
 def infos_races():
    infos_races = Races_equides.query.all()
@@ -154,6 +156,26 @@ def infos_races():
          db.session.commit() 
       return redirect(url_for('races.infos_races'))
 
+@prestataires.route('/prestataires', methods=['GET', 'POST'])
+@login_required
+def infos_prestataires():
+   infos_prestataires = Prestataires.query.all()
+   if request.method == 'GET':
+      return render_template('prestataires.html', prestataires = infos_prestataires)
+
+   if request.method == 'POST':
+      if 'form_add_race' in request.form:
+         add_prestataire = Prestataires()
+         db.session.add(add_prestataire)
+         db.session.commit() 
+      return redirect(url_for('prestataires.infos_prestataires'))
+
+@centres_detention.route('/centres_detention', methods=['GET', 'POST'])
+@login_required
+def infos_centres_detention():
+   infos_centres_detention = Centres_detention.query.all()
+   if request.method == 'GET':
+      return render_template('centres_detention.html', centres = infos_centres_detention)
 #Besoin de cette fonction ne pas toucher pour le login
 @login.user_loader
 def load_user(id):

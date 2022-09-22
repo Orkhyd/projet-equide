@@ -13,12 +13,19 @@
 <div align="center">
 	<img src="{{url_for('static', filename='img/img_couverture.jpg')}}" ; width="100px;">
 </div>
+<table>
 {% for race  in races %}
-<div class="row">
-    <div>{{race.nom_race}}</div>
-</div>
+
+    <tr>
+		<td>
+			{{race.nom_race}}
+		</td>
+		<td>
+			{{race.id_type_eq}}
+		</td>
+	</tr>
 
 {% endfor %}
 
-
+</table>
 {% endblock %}
