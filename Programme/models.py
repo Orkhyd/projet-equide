@@ -1,6 +1,7 @@
 from sqlalchemy.orm import relationship
 from projet_equides import db
-
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 class Races_equides(db.Model):
     id_race = db.Column(db.Integer, primary_key=True)
@@ -86,3 +87,56 @@ class Proprietaires(db.Model):
     prenom_prop = db.Column(db.String)
     sire_prop = db.Column(db.String)
     siret_prop = db.Column(db.String)
+
+
+class User(UserMixin, db.Model):
+
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    login_user = db.Column(db.String)
+    code_user = db.Column(db.String)
+    id_centre_user = db.Column(db.Integer)
+    
+    
+    def __init__(self, login):
+
+        
+        self.login_user = login
+        self.id = self.get_id()
+        query = self.query.filter_by(login_user=self.login_user).first()
+        if query is not None:
+            self.code_user = query.code_user
+        else:
+            self.code_user = None
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):   
+        return True           
+
+    def is_anonymous(self):
+        return False          
+
+    def set_password(self, password):
+        if self.is_authenticated:
+            user = self.query.filter_by(login_user=self.login_user).first()
+            user.code_user = generate_password_hash(password)
+            db.session.commit()
+        else:
+            raise Exception("Must be connected to change password")
+
+    def check_password(self, password):
+        if self.code_user is None:
+            return False
+        else:
+            return check_password_hash(self.code_user, password)
+
+    def get_id(self):
+        try:
+            return self.query.filter_by(login_user=self.login_user).first().id
+        except:
+            return None
+
+
