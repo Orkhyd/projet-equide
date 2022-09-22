@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Nicolas">
+
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="{{url_for('login.static', filename='css/login.css')}}">
+        <style type="text/css">
+            {% if login_err %}
+
+                .form > p {
+                    color: red;
+                    font-weight: bold;
+                    text-align: center;
+                    
+                }
+
+                .main > p{
+                    display: none;
+                }
+            {% elif login_needed %}
+                .main > p{
+                    color: red;
+                    font-weight: bold;
+                    text-align: center;
+                }
+                .form > p {
+                    display: none;
+                    
+                }
+            {% else %}
+                .main > p{
+                    display: none;
+                }
+                .form > p {
+                    display: none;
+                    
+                }
+            {% endif %}
+
+        </style>
+    </head>
+  
+    <body>
+        <div class="main">
+            <p>Vous devez d'abord vous connectez pour accéder à cette page !</p>
+            <div class="element">
+                <img src="{{url_for('login.static', filename='img/logo_centre.png')}}">
+                <form class="form" method="post">
+                    
+                    <h2>Bienvenue</h2>
+                    <p>Identifiant ou <br> mot de passe incorrect</p>
+                    <div class="input">
+                        <label for="login">Identifiant</label>
+                        <input type="text" name="login">
+                        
+                    </div>
+                    <div class="input">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" name="password">
+                        
+                    </div>
+                    
+                    <div class="input">
+                        
+                        <input type = "submit" name="submit" value = "Se connecter">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+  
+  
