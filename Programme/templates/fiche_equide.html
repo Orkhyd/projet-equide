@@ -76,6 +76,7 @@
 		<div class="tab-content col-sm-12" id="v-pills-tabContent">
 			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 				<div class="col-sm-12 ">
+<<<<<<< Updated upstream
 				<form class="needs-validation" novalidate>
 					<div class="row">
 						<div class="col-sm-6">
@@ -90,6 +91,21 @@
 								<option value=0 {% if equide.sexe_eq==0 %}selected{% endif %}>Femelle</option>
 								<option value=1 {% if equide.sexe_eq==1 %}selected{% endif %}>Male</option>
 							</select>
+=======
+					<form class="needs-validation" novalidate>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="name" class="form-label">Nom du cheval</label>
+								<input class="form-control" type="text" value="{{ equide.nom_eq }}">
+							</div>
+							<div class="col-sm-6 ">
+								<label for="color" class="form-label">Sexe</label>
+								<select class="form-select" class="col-sm-6 form-label">
+									<option value=0 {% if equide.sexe_eq==0 %}selected{% endif %}>Femelle</option>
+									<option value=1 {% if equide.sexe_eq==1 %}selected{% endif %}>Male</option>
+								</select>
+							</div>
+>>>>>>> Stashed changes
 						</div>
 					</div>
 					<div class="row">
