@@ -1,9 +1,9 @@
 from flask import Flask, request, flash, url_for, redirect, render_template
 from flask import Blueprint
 from flask import current_app as app
-from projet_equides import app
-from models import Equides, Races_equides, Soins_equides, Deplacements, Evenements, Types_soins, Soins, Proprietaires, Prestataires 
-from projet_equides import db
+from .projet_equides import app
+from .models import Equides, Races_equides, Soins_equides, Deplacements, Evenements, Types_soins, Soins, Proprietaires, Prestataires 
+from .projet_equides import db
 
 chevaux = Blueprint('chevaux', __name__)
 proprietaires = Blueprint('proprietaires', __name__)

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import relationship
-from projet_equides import db
+from .projet_equides import db
 
 
 class Races_equides(db.Model):
