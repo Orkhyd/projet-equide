@@ -11,9 +11,11 @@ from models import User
 
 a=User("emmanuel")
 a.set_password("Azerty01")
+
 chevaux = Blueprint('chevaux', __name__)
 proprietaires = Blueprint('proprietaires', __name__)
 transports = Blueprint('transports', __name__)
+races = Blueprint('races', __name__)
 #Déclare le blueprint login
 login_bp = Blueprint('login', __name__,template_folder='templates',static_folder='static',url_prefix='/')
 
@@ -137,6 +139,20 @@ def infos_transports():
          db.session.add(add_transport)
          db.session.commit() 
       return redirect(url_for('transports.infos_transports'))
+
+@races.route('/transports', methods=['GET', 'POST'])
+@login_required
+def infos_races():
+   infos_races = Races_equides.query.all()
+   if request.method == 'GET':
+      return render_template('races.html', races = infos_races)
+
+   if request.method == 'POST':
+      if 'form_add_race' in request.form:
+         add_race = Races_equides()
+         db.session.add(addrace)
+         db.session.commit() 
+      return redirect(url_for('races.infos_races'))
 
 #Besoin de cette fonction ne pas toucher pour le login
 @login.user_loader
