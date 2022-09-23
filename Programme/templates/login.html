@@ -1,52 +1,77 @@
-
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
     <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="">
-      <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-      <meta name="generator" content="Hugo 0.101.0">
-      <title>Signin Template · Bootstrap v5.2</title>
-      <link rel="stylesheet" href="{{url_for('static', filename='css/signin.css')}}">
-      <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
-  
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Nicolas">
+
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="{{url_for('login.static', filename='css/login.css')}}">
+        <style type="text/css">
+            {% if login_err %}
+
+                .form > p {
+                    color: red;
+                    font-weight: bold;
+                    text-align: center;
+                    
+                }
+
+                .main > p{
+                    display: none;
+                }
+            {% elif login_needed %}
+                .main > p{
+                    color: red;
+                    font-weight: bold;
+                    text-align: center;
+                }
+                .form > p {
+                    display: none;
+                    
+                }
+            {% else %}
+                .main > p{
+                    display: none;
+                }
+                .form > p {
+                    display: none;
+                    
+                }
+            {% endif %}
+
+        </style>
     </head>
   
-  <body class="text-center">
-      
-  <main class="form-signin w-100 m-auto">
-  <form method="post">
-      <img class="mb-4" src="{{url_for('static', filename='img/logo_centre.png')}}" alt="" width="100" height="100">
-      <h1 class="h3 mb-3 fw-normal">Votre centre équestre</h1>
-      <div class="form-floating">
-        <input type="text" value="{{ request.form.username }}" name="username" id="inputUsername" class="form-control" autocomplete="username"  autofocus placeholder="Votre identifiant">
-        <label for="floatingInput">Identifiant</label>
-      </div>
-      <div class="form-floating">
-      <input type="password" name="password" id="inputPassword" class="form-control" value="{{
-        request.form.password }}" autocomplete="current-password" required placeholder="Saisir votre mot de passe">
-        <label for="floatingInput">Mot de passe</label>
-      </div>
-     
-      <input type="hidden" name="_csrf_token"
-             value=""
-      >
-  
-  
-          <div class="checkbox mb-3">
-              <label>
-                  <input type="checkbox" name="_remember_me"> Remember me
-              </label>
-          </div>
-      
-  
-      <button class="btn btn-lg btn-primary" type="submit">
-          Se connecter
-      </button>
-      <p class="mt-5 mb-3 text-muted">Pas encore inscrit ? <br>Contacter l'administrateur du centre équestre</p>
-  </form>
-  </main>  
+    <body>
+        <div class="main">
+            <p>Vous devez d'abord vous connectez pour accéder à cette page !</p>
+            <div class="element">
+                <img src="{{url_for('login.static', filename='img/logo_centre.png')}}">
+                <form class="form" method="post">
+                    
+                    <h2>Bienvenue</h2>
+                    <p>Identifiant ou <br> mot de passe incorrect</p>
+                    <div class="input">
+                        <label for="login">Identifiant</label>
+                        <input type="text" name="login">
+                        
+                    </div>
+                    <div class="input">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" name="password">
+                        
+                    </div>
+                    
+                    <div class="input">
+                        
+                        <input type = "submit" name="submit" value = "Se connecter">
+                    </div>
+                </form>
+            </div>
+        </div>
     </body>
-    </html>
+</html>
   
   

@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+
+{% block body %}
+
+<div class="row">
+	<div class="col-sm-10 form-control" >
+		<button style="float: left;" type="button" class="btn btn-success" data-bs-toggle="modal"
+			data-bs-target="#ajoutProp">
+			Ajouter un prestataire
+		</button>
+	</div>
+</div>
+<div align="center">
+	<img src="{{url_for('static', filename='img/img_couverture.jpg')}}" ; width="100px;">
+</div>
+<div class="row">
+    <table>
+{% for prestataire  in prestataires %}
+    <tr>
+		<td>
+			{{prestataire.nom_presta}}
+		</td>
+		<td>
+			{{prestataire.prenom_presta}}
+		</td>
+		<td>
+			{{prestataire.tel_presta}}
+		</td>
+		<td>
+			{{prestataire.mail_presta}}
+		</td>
+		<td>
+			{{prestataire.adresse_ligne_1_presta}}
+		</td>
+		<td>
+			{{prestataire.adresse_ligne_2_presta}}
+		</td>
+		<td>
+			{{prestataire.cp_presta}}
+		</td>
+		<td>
+			{{prestataire.ville_presta}}
+		</td>
+	</tr>
+	
+
+
+{% endfor %}
+
+</table>
+</div>
+{% endblock %}

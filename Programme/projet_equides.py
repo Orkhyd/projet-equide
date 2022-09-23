@@ -6,11 +6,11 @@ from sqlalchemy.orm import relationship
 
 app = Flask(__name__)
 
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://team:*Azerty01*@localhost/projet_equides'
-app.config[ 'SQLALCHEMY_TRACK_MODIFICATION' ] = True
-db = SQLAlchemy(app)
+app.config['SQLALCHEMY_TRACK_MODIFICATION' ] = True
+app.config['SECRET_KEY'] = 'projet_equides_2022'
 
+db = SQLAlchemy(app)
 
 from views import chevaux
 app.register_blueprint(chevaux)
@@ -18,5 +18,20 @@ app.register_blueprint(chevaux)
 from views import proprietaires
 app.register_blueprint(proprietaires)
 
+from views import login_bp
+app.register_blueprint(login_bp)
+
+from views import races
+app.register_blueprint(races)
+
+from views import prestataires
+app.register_blueprint(prestataires)
+
+from views import centres_detention
+app.register_blueprint(centres_detention)
+
 from views import transports
 app.register_blueprint(transports)
+
+if __name__ == '__main__':
+	app.run(debug=True)

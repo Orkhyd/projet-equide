@@ -25,8 +25,9 @@ SET time_zone = "+00:00";
 
 --
 -- Structure de la table `centres_detention`
---
 
+CREATE DATABASE projet_equides;
+USE projet_equides;
 DROP TABLE IF EXISTS `centres_detention`;
 CREATE TABLE IF NOT EXISTS `centres_detention` (
   `Id_centre` int(11) NOT NULL AUTO_INCREMENT,
@@ -469,6 +470,9 @@ ALTER TABLE `soins_equides`
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_centre_user`) REFERENCES `centres_detention` (`Id_centre`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
+
+ALTER TABLE `users` MODIFY COLUMN code_user varchar(128); 
+ALTER TABLE `users` RENAME COLUMN id_user TO id;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

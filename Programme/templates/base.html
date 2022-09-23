@@ -77,7 +77,7 @@
 	</button>
 	<div class="navbar-nav">
 		<div class="nav-item text-nowrap">
-			<a class="nav-link px3-" href="">Se déconnecter</a>
+			<a class="nav-link px3-" href="{{ url_for('login.logout') }}">Se déconnecter</a>
 		</div>
 	</div>
 </header>
@@ -89,26 +89,26 @@
 				<div class="position-sticky pt-3 sidebar-sticky">
 					<ul class="nav flex-column">
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="">
+							<a class="nav-link" href="{{ url_for('centres_detention.infos_centres_detention') }}">
 								<span data-feather="home" class="align-text-bottom"></span>
-								Accueil
+								Centre de détention
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ url_for('chevaux.infos_chevaux') }}">
-								<span data-feather="file" class="align-text-bottom"></span>
+								<span data-feather="gitlab" class="align-text-bottom"></span>
 								Chevaux
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ url_for('proprietaires.infos_proprietaires') }}">
-								<span data-feather="file" class="align-text-bottom"></span>
+								<span data-feather="user" class="align-text-bottom"></span>
 								Propriétaire
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ url_for('transports.infos_transports') }}">
-								<span data-feather="file" class="align-text-bottom"></span>
+								<span data-feather="map" class="align-text-bottom"></span>
 								Transports
 							</a>
 						</li>
@@ -123,15 +123,15 @@
 					</h6>
 					<ul class="nav flex-column mb-2">
 						<li class="nav-item">
-							<a class="nav-link" href="">
-								<span data-feather="shopping-cart" class="align-text-bottom"></span>
-								Mon profil
+							<a class="nav-link" href="{{ url_for('races.infos_races') }}">
+								<span data-feather="file-text" class="align-text-bottom"></span>
+								Races de chevaux
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="">
-								<span data-feather="shopping-cart" class="align-text-bottom"></span>
-								Races de chevaux
+							<a class="nav-link" href="{{ url_for('prestataires.infos_prestataires') }}">
+								<span data-feather="file-text" class="align-text-bottom"></span>
+								Prestataires
 							</a>
 						</li>
 					</ul>
