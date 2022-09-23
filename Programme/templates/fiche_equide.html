@@ -78,16 +78,20 @@
 				<div class="col-sm-12 ">
 					<form class="needs-validation" novalidate>
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<label for="name" class="form-label">Nom du cheval</label>
 								<input class="form-control" type="text" value="{{ equide.nom_eq }}">
 							</div>
-							<div class="col-sm-6 ">
+							<div class="col-sm-4 ">
 								<label for="color" class="form-label">Sexe</label>
 								<select class="form-select" class="col-sm-6 form-label">
 									<option value=0 {% if equide.sexe_eq==0 %}selected{% endif %}>Femelle</option>
 									<option value=1 {% if equide.sexe_eq==1 %}selected{% endif %}>Male</option>
 								</select>
+							</div>
+							<div class="col-sm-4">
+								<label for="name" class="form-label">Nom du Propriétaire</label>
+								<input class="form-control" type="text" value="{{ equide.prop.prenom_prop }} {{ equide.prop.nom_prop }}">
 							</div>
 						</div>
 						<div class="row">
@@ -109,6 +113,24 @@
 							<div class="col-sm-6">
 								<label for="color" class="form-label">Puce</label>
 								<input class="form-control" type="text" value="{{ equide.puce_eq }}">
+							</div>
+							<div class="col-sm-6">
+								<label for="color" class="form-label">Numéro Stud Bool</label>
+								<input class="form-control" type="text" value="{{ equide.num_stu_book_eq }}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<label for="color" class="form-label">Nom du père</label>
+								<input class="form-control" type="text" value="{{ equide.pere_eq }}">
+							</div>
+							<div class="col-sm-4">
+								<label for="color" class="form-label">Nom de la mère</label>
+								<input class="form-control" type="text" value="{{ equide.mere_eq }}">
+							</div>
+							<div class="col-sm-4">
+								<label for="color" class="form-label">Nom du père de la mère</label>
+								<input class="form-control" type="text" value="{{ equide.pere_mere_eq }}">
 							</div>
 						</div>
 						<br>

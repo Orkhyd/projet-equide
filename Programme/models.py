@@ -53,6 +53,9 @@ class Equides(db.Model):
     race_eq = db.Column(db.Integer, db.ForeignKey('races_equides.id_race'))
     # On crée une variable qui fait la connexion "back_populates" de la class Races_equides
     race = relationship('Races_equides', back_populates = 'equides_races')
+    id_prop_eq = db.Column(db.Integer, db.ForeignKey('proprietaires.id_prop'))
+    # On crée une variable qui fait la connexion "back_populates" de la class Races_equides
+    prop = relationship('Proprietaires', back_populates = 'prop_eq')
 
 
 class Soins_equides(db.Model):
@@ -103,6 +106,8 @@ class Proprietaires(db.Model):
     prenom_prop = db.Column(db.String)
     sire_prop = db.Column(db.String)
     siret_prop = db.Column(db.String)
+     # On crée une variable qui fait la connexion "back_populates" de la class Soins_equides
+    prop_eq = relationship('Equides', back_populates = 'prop', lazy = True)
 
 class Centres_detention(db.Model):
     Id_centre = db.Column(db.Integer, primary_key=True)
