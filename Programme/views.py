@@ -1,4 +1,4 @@
-from flask import Flask, request, flash, url_for, redirect, render_template
+from flask import Flask, request, flash, url_for, redirect, render_template, make_response
 from flask import Blueprint
 from flask import current_app as app
 from projet_equides import app
@@ -8,6 +8,11 @@ from flask_login import current_user, login_required, logout_user, login_user
 from flask_login import LoginManager
 from forms import LoginForm
 from models import User
+import pdfkit
+
+
+config = pdfkit.configuration(wkhtmltopdf='C:\Program Files\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
+
 
 a=User("emmanuel")
 a.set_password("Azerty01")
@@ -127,6 +132,26 @@ def infos_proprietaires():
 
       db.session.commit() 
       return redirect(url_for('proprietaires.infos_proprietaires'))
+
+
+@transports.route('/transports/pdf')
+@login_required
+def transports_pdf():
+   infos_transports = Transports.query.all()
+   infos_deplacements = Deplacements.query.all()
+
+   html_path = './templates/tmp_toPdf.html'
+   html_file = open(html_path, 'w', encoding="utf_8")
+   html_file.write(render_template('transports.html', transports = infos_transports, deplacements = infos_deplacements))
+   html_file.close()
+   pdf = pdfkit.from_file(html_path, configuration=config, verbose=True, css=".\static\css\signin.css" )
+
+   response = make_response(pdf)
+   response.headers['Content-Type'] = 'application/pdf'
+   # 'Content-Disposition' = 'attachment' télécharge localement le fichier, 'inline' l'ouvre dans le navigateur
+   response.headers['Content-Disposition'] = 'attachment; filename = fiche_deplacements.pdf'
+   return response
+
 
 @transports.route('/transports', methods=['GET', 'POST'])
 @login_required
